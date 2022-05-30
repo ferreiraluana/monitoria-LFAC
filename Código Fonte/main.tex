@@ -10,6 +10,8 @@
 \usepackage{float}
 \usepackage[utf8]{inputenc}
 \usepackage{hyperref}
+\usepackage{amssymb}
+
 
 \hypersetup{
     colorlinks=true,
@@ -161,9 +163,35 @@ $q_1$    & $q_1$ & $q_0$  \\
         
         \input{afd/a03}
     \end{problem}
-    \begin{solution}
-        
+    \begin{solution} A definição formal é $M = \{\Sigma, Q, \delta, q_0, F\}$, onde:
+    \begin{itemize}
+        \item $\Sigma = \{0,1\}$
+        \item $Q = \{q_0, q_1, q_2, q_3, q_4, q_5\}$
+        \item $\delta = \{\delta(q_0,0) \rightarrow q_1, \delta(q_1,0) \rightarrow q_2, \delta(q_2,0) \rightarrow q_3, \delta(q_3,0) \rightarrow \emptyset, \delta(q_4,0) \rightarrow \emptyset, \delta(q_5,0) \rightarrow \emptyset, \delta(q_0,1) \rightarrow \emptyset, \delta(q_1,1) \rightarrow \emptyset, \delta(q_2,1) \rightarrow q_5, \delta(q_3,1) \rightarrow q_4, \delta(q_4,1) \rightarrow q_5, \delta(q_5,1) \rightarrow q_0\}$
+        \item $q_0 = q_0$
+        \item $F = \{q_0\}$
+    \end{itemize}
+    Tabela com a função programa:
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.5]{img/programa.png}
+        %\caption{Caption}
+        \label{fig:my_label}
+    \end{figure}
+    \noindent Computação da palavra $w = 00100$:
+\begin{align*}
+    \left\{\begin{matrix}
+\delta^{*}(q_0,00100) & = \delta^{*}(\delta(q_0, 0),0100) & = \delta^{*}(q_1,0100) \\ 
+= \delta^{*}(\delta(q_1, 0),100) & = \delta^{*}(q_2,100) & = \delta^{*}(\delta(q_2, 1),00)\\ 
+= \delta^{*}(q_5,00) & = \delta^{*}(\delta(q_5, 0),0) & = \emptyset
+\end{matrix}\right.
+\end{align*}
+Esse autômato é um AFD (Autômato Finito Determinístico) e reconhece as linguagens sobre o alfabeto $\{0,1\}$ que contenham o mesmo número de 1's precedidos de 0's.
     \end{solution}
+    
+    
+    
+    
     \begin{problem}
         Construa um autômato que aceite aa ou bb como subpalavra. Faça a função programa.
     \end{problem}
@@ -183,7 +211,11 @@ $q_1$    & $q_1$ & $q_0$  \\
         e ímpar de 'a' \}
         
     \end{problem}
-    \begin{solution}
+    \begin{solution} O autômato pode ser representado por:
+           \begin{figure}[H]
+           \centering
+           \includegraphics[scale=0.5]{solutions/q6.png}
+    \end{figure}
         
     \end{solution}
     \begin{problem}
@@ -192,7 +224,12 @@ $q_1$    & $q_1$ & $q_0$  \\
         Compute a palavra 'abaaab'. Ela é aceita pelo autômato?
     \end{problem}
     \begin{solution}
-        
+    O autômato pode ser representado por:
+           \begin{figure}[H]
+           \centering
+           \includegraphics[scale=0.5]{solutions/q7.png}
+    \end{figure}
+    
     \end{solution}
     \begin{problem}
         Para o automato dado: Dê a definição formal; construa a tabela da função programa; mostre a computação da palavra 00100; que autômato é esse? Que linguagem ele reconhece?
@@ -304,7 +341,7 @@ $q_1$    & $q_1$ & $q_0$  \\
         \input{gram/a22}
         \end{problem}
     \begin{solution}
-        
+      
     \end{solution}
     %\subsection{Algoritmo de Minimização}
     
@@ -314,7 +351,20 @@ $q_1$    & $q_1$ & $q_0$  \\
             \begin{problem}
                     Dê a definição matemática de Máquina de Mealy.
             \end{problem}
-            \begin{solution}
+    \begin{solution}
+            
+      A máquina de Mealy pode ser definida como uma Tupla dada por:
+        $M = (\Sigma, Q, \delta, q_0, F, \Delta)$
+        
+        \begin{itemize}
+        \item $\Sigma$ é o alfabeto de simbolosde entrada.
+        \item $Q$ representa o conjunto de estados.
+        \item $\delta$ é a função programa ou de transição.
+        \item $q_0$ é o estado inicial.
+        \item $F$ é o conjunto de estados finais.
+        \item $\Delta$ É o alfabeto de simbolos de saída.
+        \end{itemize}
+            
         
     \end{solution}
             \begin{problem}
@@ -341,7 +391,21 @@ $q_1$    & $q_1$ & $q_0$  \\
             \begin{problem}
                     Dê a definição matemática de Máquina de Moore.
             \end{problem}
-            \begin{solution}
+    \begin{solution}
+        
+      A máquina de Moore pode ser definida como uma Tupla dada por:
+         $M = (\Sigma, Q, \delta, q_0, F, \Delta, \delta_S)$
+        
+        \begin{itemize}
+        \item $\Sigma$ é o alfabeto de simbolosde entrada.
+        \item $Q$ representa o conjunto de estados.
+        \item $\delta$ é a função programa ou de transição.
+        \item $q_0$ é o estado inicial.
+        \item $F$ é o conjunto de estados finais.
+        \item $\Delta$ é o alfabeto de simbolos de saída.
+        \item $\delta_S$ é a função de saída.
+        \end{itemize}
+            
         
     \end{solution}
             \begin{problem}
@@ -422,8 +486,21 @@ $q_1$    & $q_1$ & $q_0$  \\
         \begin{problem}
                 Defina formalmente a Máquina de Turing; contrua um autômato de exemplo e, em seguida, compute uma palavra de sua escolha.
         \end{problem}
-        \begin{solution}
-        
+    \begin{solution}
+    A máquina de turing é definida por uma tupla composta por 8 elementos:
+    
+    $M = (\Sigma, Q, \delta, q_0, F, V,\beta, s)$, onde:
+    
+    \begin{itemize}
+        \item $\Sigma$ é o alfabeto de simbolos de entrada.
+        \item Q é o conjunto de estados
+        \item $\delta$ é a função programa
+        \item $q_0$ é o estado inicial
+        \item F é um subconjunto  de Q, denominado de conjunto de estados finais.
+        \item V é o alfabeto dito auxiliar.
+        \item $\beta$ é o simbolo branco.
+        \item $s$ é o marcador de início da fita.
+    \end{itemize}
     \end{solution}
     \subsection{Hipótese de Church}
         \begin{problem}
@@ -693,6 +770,47 @@ Computabilidade está relacionada ao estudo de problemas e à resolução destes
 
 \begin{solution}
 O princípio da redução é uma forma de solucionar problemas utilizando recursividade. Ou seja, é realizado a divisão de um problema menores partes, até que cada um desses pequenos pedaços/problemas possua uma solução conhecida.
+\end{solution}
+
+\section{Atividades 2021.2}
+\subsection{Atividade 4}
+\begin{problem}  Faça o autômato com saída para o somador completo.
+\end{problem}
+
+\begin{solution} Uma possível representação é:
+    \begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (6.4,-9) circle (3);
+\draw (6.4,-9) node {$q_1$};
+\draw [black] (27.8,-9) circle (3);
+\draw (27.8,-9) node {$q_2$};
+\draw [black] (27.8,-9) circle (2.4);
+\draw [black] (15.7,-26.4) circle (3);
+\draw (15.7,-26.4) node {$q_3$};
+\draw [black] (15.7,-26.4) circle (2.4);
+\draw [black] (9.4,-9) -- (24.8,-9);
+\fill [black] (24.8,-9) -- (24,-8.5) -- (24,-9.5);
+\draw (17.1,-8.5) node [above] {$0,\epsilon$};
+\draw [black] (7.81,-11.65) -- (14.29,-23.75);
+\fill [black] (14.29,-23.75) -- (14.35,-22.81) -- (13.47,-23.28);
+\draw (10.37,-18.87) node [left] {$1,\epsilon$};
+\draw [black] (27.375,-11.967) arc (-12.30784:-57.32184:20.685);
+\fill [black] (27.37,-11.97) -- (26.72,-12.64) -- (27.69,-12.86);
+\draw (24.75,-20.73) node [right] {$0,0$};
+\draw [black] (17.023,-29.08) arc (54:-234:2.25);
+\draw (15.7,-33.65) node [below] {$1,0$};
+\fill [black] (14.38,-29.08) -- (13.5,-29.43) -- (14.31,-30.02);
+\draw [black] (26.477,-6.32) arc (234:-54:2.25);
+\draw (27.8,-1.75) node [above] {$0,0$};
+\fill [black] (29.12,-6.32) -- (30,-5.97) -- (29.19,-5.38);
+\draw [black] (16.747,-23.589) arc (157.24049:133.12983:36.828);
+\fill [black] (16.75,-23.59) -- (17.52,-23.05) -- (16.6,-22.66);
+\draw (19.87,-15.45) node [left] {$1,1$};
+\draw [black] (0.2,-9) -- (3.4,-9);
+\fill [black] (3.4,-9) -- (2.6,-8.5) -- (2.6,-9.5);
+\end{tikzpicture}
+\end{center}
 \end{solution}
 
 \section{Avaliações Anteriores}
